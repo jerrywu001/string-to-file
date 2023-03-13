@@ -1,6 +1,6 @@
 # string-to-file
 
-This package convert ANSI escape codes to formatted text output for Vue3. Copy from ansi-to-react.
+Transform string to file in client side.
 
 ## Installation
 
@@ -24,86 +24,64 @@ npm run dev
 
 ## Usage
 
-### Basic
+- json to file
 
-The example below shows how we can use this package to render a string with ANSI escape codes.
+```ts
+import { stringToFile, saveFile } from 'string-to-file';
 
-```html
-<template>
-  <Ansi>{{ '\u001b[34mhello world' }}</Ansi>
-</template>
+const json = {
+  name: "jack",
+  age: 12
+};
 
-<script setup lang="ts">
-import Ansi from 'string-to-file';
-</script>
+const jsonFile = stringToFile(JSON.stringify(json, null, 2), 'xxx.json') as File;
+
+// download
+saveFile(jsonFile);
 ```
 
-Will render:
+- string to file
 
-```javascript
-<code>
-  <span style="color:rgb(0, 0, 187)">hello world</span>
-</code>
+```ts
+import { stringToFile, saveFile } from 'string-to-file';
+
+const string = `Hello world!
+
+How are you!`;
+
+const stringFile = stringToFile(string, 'xxx.txt') as File;
+
+// download
+saveFile(stringFile);
 ```
 
-### Classes
+- script to file
 
-Style with classes instead of `style` attribute.
+```ts
+import { stringToFile, saveFile } from 'string-to-file';
 
-```html
-<template>
-  <Ansi use-classes>{{ "\u001b[34mhello world" }}</Ansi>
-</template>
+const jsString = `const a = 'Hello world!';
 
-<script setup lang="ts">
-import Ansi from 'string-to-file';
-</script>
+console.log(a);`;
+
+const jsFile = stringToFile(jsString, 'xxx.js') as File;
+
+// download
+saveFile(jsFile);
 ```
 
-Will render
+## Utils
 
-```javascript
-<code>
-  <span class="ansi-blue-fg">hello world</span>
-</code>
-```
+- `fileToBlob(file: File): Blob`
 
-#### Class Names
+- `saveFile(file: File, customFileName?: string): Promise<void>`
 
-| Font color             | Background Color |
-| ---------------------- | ---------------- |
-| ansi-black-fg          | ansi-black-bg    |
-| ansi-red-fg            | ansi-red-bg      |
-| ansi-green-fg          | ansi-green-bg    |
-| ansi-yellow-fg         | ansi-yellow-bg   |
-| ansi-blue-fg           | ansi-blue-bg     |
-| ansi-magenta-fg        | ansi-magenta-bg  |
-| ansi-cyan-fg           | ansi-cyan-bg     |
-| ansi-white-fg          | ansi-white-bg    |
-| ansi-bright-black-fg   |
-| ansi-bright-red-fg     |
-| ansi-bright-green-fg   |
-| ansi-bright-yellow-fg  |
-| ansi-bright-blue-fg    |
-| ansi-bright-magenta-fg |
-| ansi-bright-cyan-fg    |
-| ansi-bright-white-fg   |
+- `blobToString(blob: Blob): Promise<string>`
 
-## Development
+- `fileToString(file: File): Promise<string>`
 
-To develop on this project, fork and clone this repository on your local machine. Before making modifications, install the project's dependencies.
+- `jsonToBase64(json: Record<string, any>): Promise<string>`
 
-```
-$ npm install
-```
+- `stringToBase64(str: string, opts?: { forceEncode: boolean; fileType: FileType; }): string`
 
-To run the test suite for this project, run:
-
-```
-$ npm test
-```
-
-## Support
-
-If you experience an issue while using this package or have a feature request, please file an issue on the [issue board](https://github.com/jerrywu001/string-to-file/issues),
-
+- `base64ToFile(base64Url: string, filename: string): File`
