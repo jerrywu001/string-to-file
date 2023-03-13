@@ -9,6 +9,7 @@
     "file",
     "string to file"
   ],
+  "homepage": "https://string-to-file.js-bridge.com",
   "bugs": {
     "url": "https://github.com/jerrywu001/string-to-file/issues"
   },
@@ -33,7 +34,9 @@
   "scripts": {
     "build": "tsup",
     "clean": "rimraf -rf ./node_modules && rimraf -rf playground/node_modules && rimraf -rf package-lock.json",
-    "dev": "concurrently \"npm run build:css-watch\" \"npm run dev -w playground\"",
+    "dev": "npm run dev -w playground",
+    "preview:dev": "npm run preview -w playground",
+    "build:dev": "npm run build -w playground",
     "dev:pack": "npm run dev:usepack -w playground",
     "lint": "eslint --ext .ts,.tsx ./src",
     "prepare": "chmod a+x .husky/* && husky install",
@@ -62,7 +65,6 @@
     "autoprefixer": "^10.4.14",
     "babel-loader": "^9.1.2",
     "bumpp": "^9.0.0",
-    "concurrently": "^7.6.0",
     "core-js": "^3.29.0",
     "esbuild-plugin-babel": "^0.2.3",
     "eslint": "^8.36.0",

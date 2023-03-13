@@ -75,9 +75,8 @@
 
 <script setup lang="ts">
 import hljs from 'highlight.js';
-import { nextTick } from 'process';
 import { stringToFile, saveFile, jsonToBase64, stringToBase64 } from 'string-to-file';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, nextTick } from 'vue';
 import 'highlight.js/styles/github.css';
 
 const json = { name: 'jack', age: 12 };
@@ -116,44 +115,44 @@ const doStringToBase64 = async () => {
 };
 
 const convert = async (type = 'json') => {
-  let str: any = null;
+  let file: File | null = null;
   if (type === 'json') {
-    str = stringToFile(JSON.stringify(json, null, 2), 'test.json') as File;
+    file = stringToFile(JSON.stringify(json, null, 2), 'test.json');
 
-    result.value = hljs.highlight(JSON.stringify(getFileJson(str), null, 2), { language: 'json' }).value;
+    result.value = hljs.highlight(JSON.stringify(getFileJson(file), null, 2), { language: 'json' }).value;
   }
 
   if (type === 'string') {
-    str = stringToFile(string, 'test.txt') as File;
+    file = stringToFile(string, 'test.txt');
 
-    result.value = hljs.highlight(JSON.stringify(getFileJson(str), null, 2), { language: 'txt' }).value;
+    result.value = hljs.highlight(JSON.stringify(getFileJson(file), null, 2), { language: 'txt' }).value;
   }
 
   if (type === 'js') {
-    str = stringToFile(jsString, 'test.js') as File;
+    file = stringToFile(jsString, 'test.js');
 
-    result.value = hljs.highlight(JSON.stringify(getFileJson(str), null, 2), { language: 'javascript' }).value;
+    result.value = hljs.highlight(JSON.stringify(getFileJson(file), null, 2), { language: 'javascript' }).value;
   }
 
-  console.log('Converted: ', str);
-  return str;
+  console.log('Converted: ', file);
+  return file;
 };
 
 const download = (type = 'json') => {
-  let str: any = null;
+  let file: File | null = null;
   if (type === 'json') {
-    str = stringToFile(JSON.stringify(json, null, 2), 'test.json') as File;
-    saveFile(str);
+    file = stringToFile(JSON.stringify(json, null, 2), 'test.json');
+    saveFile(file);
   }
 
   if (type === 'string') {
-    str = stringToFile(string, 'test.txt') as File;
-    saveFile(str);
+    file = stringToFile(string, 'test.txt');
+    saveFile(file);
   }
 
   if (type === 'js') {
-    str = stringToFile(jsString, 'test.js') as File;
-    saveFile(str);
+    file = stringToFile(jsString, 'test.js');
+    saveFile(file);
   }
 };
 

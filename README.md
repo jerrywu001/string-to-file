@@ -2,6 +2,8 @@
 
 Transform string to file in client side.
 
+Playground: https://string-to-file.js-bridge.com
+
 ## Installation
 
 ```bash
@@ -34,7 +36,7 @@ const json = {
   age: 12
 };
 
-const jsonFile = stringToFile(JSON.stringify(json, null, 2), 'xxx.json') as File;
+const jsonFile = stringToFile(JSON.stringify(json, null, 2), 'xxx.json');
 
 // download
 saveFile(jsonFile);
@@ -49,7 +51,7 @@ const string = `Hello world!
 
 How are you!`;
 
-const stringFile = stringToFile(string, 'xxx.txt') as File;
+const stringFile = stringToFile(string, 'xxx.txt');
 
 // download
 saveFile(stringFile);
@@ -64,7 +66,7 @@ const jsString = `const a = 'Hello world!';
 
 console.log(a);`;
 
-const jsFile = stringToFile(jsString, 'xxx.js') as File;
+const jsFile = stringToFile(jsString, 'xxx.js');
 
 // download
 saveFile(jsFile);
