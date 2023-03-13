@@ -1,3 +1,10 @@
+/**
+ * convert string to file
+ * @param str string
+ * @param fileName file name
+ * @param opts {@link ConvertOptions}
+ * @returns File
+ */
 export function stringToFile(str: string, fileName: string, opts = {} as ConvertOptions) {
   const { encodeString = false, fileType = FileType.JSON } = opts;
   const bytes = encodeString ? encodeURI(str) : str;
