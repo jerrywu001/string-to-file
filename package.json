@@ -1,6 +1,6 @@
 {
   "name": "string-to-file",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "Transform string to file in client side",
   "keywords": [
     "form data",
