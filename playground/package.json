@@ -9,10 +9,10 @@
     "typecheck": "tsc && vue-tsc"
   },
   "dependencies": {
-    "highlight.js": "^11.7.0"
+    "highlight.js": "^11.8.0"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "vue-loader": "^17.0.1"
+    "vue-loader": "^17.2.2"
   }
 }
