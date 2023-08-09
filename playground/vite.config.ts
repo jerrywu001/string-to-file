@@ -10,7 +10,7 @@ export default defineConfig({
     alias: {
       '@/': `${path.resolve(__dirname, 'src')}/`,
       '#/': `${path.resolve(__dirname, '../dist')}/`,
-      'string-to-file': path.resolve(__dirname, process.env.USEPACK === 'true' ? '../dist/esm' : '../src'),
+      'string-to-file': path.resolve(__dirname, process.env.USEPACK === 'true' ? '../dist' : '../src'),
     },
   },
   build: {
